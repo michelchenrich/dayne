@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Customer:</b>
+  <%= @sales_order.customer %>
+</p>
+
+<p>
+  <b>Delivery date:</b>
+  <%= @sales_order.delivery_date %>
+</p>
+
+<p>
+  <b>Salesman:</b>
+  <%= @sales_order.salesman %>
+</p>
+
+<p>
+  <b>Sales type:</b>
+  <%= @sales_order.sales_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sales_order_path(@sales_order) %> |
+<%= link_to 'Back', sales_orders_path %>

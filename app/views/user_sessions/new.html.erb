@@ -1,0 +1,16 @@
+<legend>Login</legend>
+<%= form_for(@user_session, :html => {:class => "form-horizontal"}, :url => :login) do |form| %>
+    <%= form_errors_block @user_session %>
+
+    <%= form_input(form, @user_session, :email) do %>
+        <%= form.text_field :email %>
+    <% end %>
+
+    <%= form_input(form, @user_session, :password) do %>
+        <%= form.password_field :password %>
+    <% end %>
+
+    <%= form_submit form do %>
+        <%= form.submit 'Login', :class => "btn btn-primary" %>
+    <% end %>
+<% end %>

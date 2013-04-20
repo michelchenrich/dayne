@@ -1,0 +1,29 @@
+<h1>Listing sales_orders</h1>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Delivery date</th>
+    <th>Salesman</th>
+    <th>Sales type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @sales_orders.each do |sales_order| %>
+      <tr>
+        <td><%= sales_order.customer %></td>
+        <td><%= sales_order.delivery_date %></td>
+        <td><%= sales_order.salesman %></td>
+        <td><%= sales_order.sales_type_id %></td>
+        <td><%= link_to 'Show', sales_order %></td>
+        <td><%= link_to 'Edit', edit_sales_order_path(sales_order) %></td>
+        <td><%= link_to 'Destroy', sales_order, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+</table>
+
+<br/>
+
+<%= link_to 'New Sales order', new_sales_order_path %>

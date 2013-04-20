@@ -1,33 +1,19 @@
-<%= form_for(@user) do |f| %>
-    <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user, :html => {:class => "form-horizontal"}, :url => new ? 'register' : 'edit_user_profile' do |form| %>
+    <%= form_errors_block @user %>
 
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+    <%= form_input(form, @user, :email) do %>
+        <%= form.text_field :email %>
     <% end %>
 
-    <div class="field">
-      <%= f.label :username %><br />
-      <%= f.text_field :username %>
-    </div>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <%= form_input(form, @user, :password) do %>
+        <%= form.password_field :password %>
+    <% end %>
+
+    <%= form_input(form, @user, :password_confirmation) do %>
+        <%= form.password_field :password_confirmation %>
+    <% end %>
+
+    <%= form_submit form do %>
+        <%= form.submit new ? 'Register' : 'Update Profile', :class => "btn btn-primary" %>
+    <% end %>
 <% end %>

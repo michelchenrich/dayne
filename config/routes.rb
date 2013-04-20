@@ -1,14 +1,24 @@
 Dayne::Application.routes.draw do
-  resources :users
-  post   '/register'            => 'users#create',  :as => :register
-  get    '/register'            => 'users#new',     :as => :register
-  delete '/delete_user_profile' => 'users#destroy', :as => :delete_user_profile
-  get    '/edit_user_profile'   => 'users#edit',    :as => :edit_user_profile
-  put    '/edit_user_profile'   => 'users#update',  :as => :edit_user_profile
+  resources :materials
 
-  post '/login'  => 'user_sessions#create',  :as => :login
-  get  '/login'  => 'user_sessions#new',     :as => :login
-  get  '/logout' => 'user_sessions#destroy', :as => :logout
+
+  post '/register' => 'users#create', :as => :register
+  get '/register' => 'users#new', :as => :register
+  delete '/delete_user_profile' => 'users#destroy', :as => :delete_user_profile
+  get '/edit_user_profile' => 'users#edit', :as => :edit_user_profile
+  put '/edit_user_profile' => 'users#update', :as => :edit_user_profile
+
+  post '/login' => 'user_sessions#create', :as => :login
+  get '/login' => 'user_sessions#new', :as => :login
+  get '/logout' => 'user_sessions#destroy', :as => :logout
+
+  resources :customers
+  resources :salesmen
+  resources :material_types
+  resources :sales_orders
+  resources :sizes
+
+  root :to => 'index#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

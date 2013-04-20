@@ -14,11 +14,37 @@
 <body>
 <header class="navbar navbar-fixed-top">
   <nav class="navbar-inner">
-    <div class="span12">
+    <div class="container">
+      <a class="brand">D'ayne</a>
+      <ul class="nav">
+        <% unless current_user.nil? %>
+            <li>
+              <%= link_to :edit_user_profile do %>
+                  <i class="icon-pencil"></i> Edit User Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to :logout do %>
+                  <i class="icon-off"></i> Logout
+              <% end %>
+            </li>
+        <% else %>
+            <li>
+              <%= link_to :register do %>
+                  <i class="icon-asterisk"></i> Register
+              <% end %>
+            </li>
+            <li>
+              <%= link_to :login do %>
+                  <i class="icon-user"></i> Login
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
     </div>
   </nav>
 </header>
-<div class="span12">
+<div class="container">
   <%= yield %>
 </div>
 <footer>
