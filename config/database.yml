@@ -1,19 +1,24 @@
-common: &common
- adapter: postgresql
- username: postgres
- password: 205500
+#common: &common
+# adapter: postgresql
+# username: postgres
+# password: 205500
+
+#development:
+# <<: *common
+# database: dayne_development
+
+#test:
+# <<: *common
+# database: dayne_test
 
 development:
- <<: *common
- database: dayne_development
+ adapter: sqlite3
+ database: db/development.sqlite3
+ pool: 5
+ timeout: 5000
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
- <<: *common
- database: dayne_test
-
-production:
- <<: *common
- database: dayne_production
+ adapter: sqlite3
+ database: db/test.sqlite3
+ pool: 5
+ timeout: 5000
