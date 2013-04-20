@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 group :production do
   gem 'therubyracer-heroku', :platforms => [:ruby]
 end
+
 gem 'pg'
 
 # Gems used only for assets and not required
