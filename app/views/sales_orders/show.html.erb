@@ -1,25 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="well well-small">
+  <d1 class="dl-horizontal">
+    <dt><%= SalesOrder.human_attribute_name :customer %></dt>
+    <dd><%= @sales_order.customer.name %></dd>
 
-<p>
-  <b>Customer:</b>
-  <%= @sales_order.customer %>
-</p>
+    <dt><%= SalesOrder.human_attribute_name :delivery_date %></dt>
+    <dd><%= format_date @sales_order.delivery_date %></dd>
 
-<p>
-  <b>Delivery date:</b>
-  <%= @sales_order.delivery_date %>
-</p>
+    <dt><%= SalesOrder.human_attribute_name :salesman %></dt>
+    <dd><%= @sales_order.salesman.name %></dd>
 
-<p>
-  <b>Salesman:</b>
-  <%= @sales_order.salesman %>
-</p>
-
-<p>
-  <b>Sales type:</b>
-  <%= @sales_order.sales_type_id %>
-</p>
-
+    <dt><%= SalesOrder.human_attribute_name :material_type %></dt>
+    <dd><%= @sales_order.material_type.name %></dd>
+  </d1>
+</div>
 
 <%= link_to 'Edit', edit_sales_order_path(@sales_order) %> |
 <%= link_to 'Back', sales_orders_path %>

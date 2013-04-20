@@ -1,37 +1,23 @@
-<%= form_for(@sales_order) do |f| %>
-    <% if @sales_order.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@sales_order.errors.count, "error") %> prohibited this sales_order from being saved:</h2>
+<%= form_for @sales_order, :html => {:class => "form-horizontal"} do |form| %>
+    <%= form_errors_block @sales_order %>
 
-          <ul>
-            <% @sales_order.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+    <%= form_input(form, @sales_order, :customer) do %>
+        <%= form.collection_select :customer_id, Customer.all, :id, :name %>
     <% end %>
 
-    <div class="field">
-      <%= f.label :customer %>
-      <br/>
-      <%= f.number_field :customer %>
-    </div>
-    <div class="field">
-      <%= f.label :delivery_date %>
-      <br/>
-      <%= f.date_select :delivery_date %>
-    </div>
-    <div class="field">
-      <%= f.label :salesman %>
-      <br/>
-      <%= f.number_field :salesman %>
-    </div>
-    <div class="field">
-      <%= f.label :sales_type_id %>
-      <br/>
-      <%= f.number_field :sales_type_id %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+    <%= form_input form, @sales_order, :delivery_date do %>
+        <%= datepicker_field :sales_order, @sales_order, :delivery_date %>
+    <% end %>
+
+    <%= form_input(form, @sales_order, :salesman) do %>
+        <%= form.collection_select :salesman_id, Salesman.all, :id, :name %>
+    <% end %>
+
+    <%= form_input(form, @sales_order, :material_type) do %>
+        <%= form.collection_select :material_type_id, MaterialType.all, :id, :name %>
+    <% end %>
+
+    <%= form_submit form do %>
+        <%= form.submit 'Create', :class => "btn btn-primary" %>
+    <% end %>
 <% end %>
