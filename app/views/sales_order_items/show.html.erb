@@ -1,0 +1,71 @@
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= sales_orders_url %>">Sales Orders</a> <span class="divider">/</span></li>
+  <li class="active">Sales Order <%= @sales_order.id %></li>
+</ul>
+<legend>Sales Order <%= @sales_order.id %></legend>
+<div class="well well-small">
+  <dl class="dl-horizontal">
+    <dt><%= SalesOrder.human_attribute_name :customer %></dt>
+    <dd><%= @sales_order.customer.name %></dd>
+
+    <dt><%= SalesOrder.human_attribute_name :delivery_date %></dt>
+    <dd><%= format_date @sales_order.delivery_date %></dd>
+
+    <dt><%= SalesOrder.human_attribute_name :salesman %></dt>
+    <dd><%= @sales_order.salesman.name %></dd>
+
+    <dt><%= SalesOrder.human_attribute_name :material_type %></dt>
+    <dd><%= @sales_order.material_type.name %></dd>
+
+    <dt><%= SalesOrder.human_attribute_name :total %></dt>
+    <dd><%= @sales_order.total_quantity %></dd>
+
+    <dd>
+      <div class="btn-group">
+          <%= link_to edit_sales_order_path(@sales_order), :class => "btn btn-primary", :title => "Edit Sales Order" do %>
+            <i class="icon-pencil icon-white"></i>
+        <% end %>
+        <%= link_to @sales_order, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger", :title => "Delete Sales Order" do %>
+            <i class="icon-trash icon-white"></i>
+        <% end %>
+      </div>
+    </dd>
+  </dl>
+</div>
+<legend>Items</legend>
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th><%= SalesOrderItem.human_attribute_name :material %></th>
+    <th><%= SalesOrderItem.human_attribute_name :description %></th>
+    <% @sales_order.used_sizes.each do |size| %>
+        <th><%= size.name %></th>
+    <% end %>
+    <th><%= SalesOrderItem.human_attribute_name :total %></th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sales_order.sales_order_items.each do |item| %>
+      <tr>
+        <td><%= item.material.name %></td>
+        <td><%= item.description %></td>
+        <% @sales_order.used_sizes.each do |size| %>
+            <td><%= item.quantities.find_by_size_id(size.id).value rescue '-' %></td>
+        <% end %>
+        <td><%= item.total_quantity %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to edit_sales_order_item_path(@sales_order), :class => "btn btn-primary", :title => "Edit Sales Order" do %>
+                <i class="icon-pencil icon-white"></i>
+            <% end %>
+            <%= link_to @sales_order, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => "btn btn-danger", :title => "Delete Sales Order" do %>
+                <i class="icon-trash icon-white"></i>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
