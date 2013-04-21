@@ -1,7 +1,4 @@
 Dayne::Application.routes.draw do
-  resources :materials
-
-
   post '/register' => 'users#create', :as => :register
   get '/register' => 'users#new', :as => :register
   delete '/delete_user_profile' => 'users#destroy', :as => :delete_user_profile
@@ -12,13 +9,16 @@ Dayne::Application.routes.draw do
   get '/login' => 'user_sessions#new', :as => :login
   get '/logout' => 'user_sessions#destroy', :as => :logout
 
+  resources :materials
   resources :customers
   resources :salesmen
   resources :material_types
-  resources :sales_orders
+  resources :sales_orders do
+    resources :items, controller: :sales_order_items, except: [:index, :show]
+  end
   resources :sizes
 
-  root :to => 'index#index'
+  root to: 'index#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

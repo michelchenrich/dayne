@@ -1,3 +1,7 @@
-<legend>New sales order</legend>
+<ul class="breadcrumb">
+  <li><a href="/">Home</a> <span class="divider">/</span></li>
+  <li><a href="<%= sales_orders_url %>">Sales Orders</a> <span class="divider">/</span></li>
+  <li class="active">New Sales Order</li>
+</ul>
+<legend>New Sales Order</legend>
 <%= render 'form' %>
-<%= link_to 'Back', sales_orders_path %>

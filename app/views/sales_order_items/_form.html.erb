@@ -1,20 +1,16 @@
-<%= form_for @sales_order, :html => {:class => "form-horizontal"} do |form| %>
-    <%= form_errors_block @sales_order %>
+<%= form_for @sales_order_item, :html => {:class => "form-horizontal"} do |form| %>
+    <%= form_errors_block @sales_order_item %>
 
-    <%= form_input(form, @sales_order, :customer) do %>
-        <%= form.collection_select :customer_id, Customer.all, :id, :name %>
+    <%= form_input form, @sales_order_item, :material do %>
+        <%= form.collection_select :material_id, @sales_order_item.possible_materials, :id, :name %>
     <% end %>
 
-    <%= form_input form, @sales_order, :delivery_date do %>
-        <%= datepicker_field :sales_order, @sales_order, :delivery_date %>
+    <%= form_input form, @sales_order_item, :description do %>
+        <%= form.text_field :description, class: 'input-xxlarge' %>
     <% end %>
 
-    <%= form_input(form, @sales_order, :salesman) do %>
-        <%= form.collection_select :salesman_id, Salesman.all, :id, :name %>
-    <% end %>
-
-    <%= form_input(form, @sales_order, :material_type) do %>
-        <%= form.collection_select :material_type_id, MaterialType.all, :id, :name %>
+    <%= form.fields_for :quantities do |builder| %>
+        <%= render 'quantity_fields', f: builder %>
     <% end %>
 
     <%= form_submit form do %>

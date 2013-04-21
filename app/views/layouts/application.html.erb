@@ -46,11 +46,6 @@
 </header>
 <div class="container">
   <%= yield %>
-  <script>
-      $(document).on("focus", "[data-behaviour~='datepicker']", function (e) {
-          $(this).datepicker({"format": "dd/mm/yyyy", "weekStart": 1, "autoclose": true});
-      });
-  </script>
 </div>
 <footer>
 </footer>

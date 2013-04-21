@@ -18,6 +18,8 @@
     <% end %>
 
     <%= form_submit form do %>
-        <%= form.submit 'Create', :class => "btn btn-primary" %>
+        <%= button_tag(type: 'submit', class: "btn btn-primary", title: 'Save') do %>
+            <i class="icon-ok icon-white"></i>
+        <% end %>
     <% end %>
 <% end %>

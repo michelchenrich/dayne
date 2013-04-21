@@ -44,10 +44,8 @@ module ApplicationHelper
   end
 
   def form_submit form, &block
-    content_tag(:div, :class => "control-group") {
-      concat content_tag(:div, :class => "controls") {
-        concat block_given? ? capture(&block) : form.submit(:class => "btn btn-primary")
-      }
+    content_tag(:div, :class => "form-actions") {
+      concat block_given? ? capture(&block) : form.submit(:class => "btn btn-primary")
     }
   end
 
@@ -74,7 +72,7 @@ module ApplicationHelper
   end
 
   def datepicker_field model_symbol, model, field
-    content_tag(:div, :class => "input-prepend input-append") {
+    content_tag(:div, :class => "input-prepend") {
       concat content_tag(:span, :class => "add-on") {
         concat content_tag(:i, :class => "icon-calendar") {}
       }

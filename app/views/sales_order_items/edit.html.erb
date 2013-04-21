@@ -1,7 +1,9 @@
 <ul class="breadcrumb">
   <li><a href="/">Home</a> <span class="divider">/</span></li>
   <li><a href="<%= sales_orders_url %>">Sales Orders</a> <span class="divider">/</span></li>
-  <li class="active">Edit Sales Order <%= @sales_order.id %></li>
+  <li><a href="<%= sales_order_url(@sales_order_item.sales_order) %>">Sales
+    Order <%= @sales_order_item.sales_order_id %></a> <span class="divider">/</span></li>
+  <li class="active">Edit Sales Order Item</li>
 </ul>
-<legend>Edit Sales Order <%= @sales_order.id %></legend>
+<legend>Edit Sales Order Item</legend>
 <%= render 'form' %>
